@@ -50,6 +50,7 @@
     <Compile Include="Nonlinear.fs" />
     <Compile Include="Probability.fs" />
     <Compile Include="Random.fs" />
+    <Content Include="README.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
