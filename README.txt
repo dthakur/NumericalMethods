@@ -1,6 +1,6 @@
 [Note: This is still work-in-progress]
 
-﻿The code has been mostly written for instructive value and will fail any boundary condition with
+The code has been mostly written for instructive value and will fail any boundary condition with
 high probability.
 
 Numerical coverage is based on the following books:
