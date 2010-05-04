@@ -44,7 +44,14 @@ let inverse x =
     let a = adjoint x
     let d = det x
     scale a d
+let augment a b = rows a |> Seq.mapi (fun i c -> Seq.append c [(Seq.nth i b)]) |> array2D
+let unaugment r =
+    let entries = rows r
+    let matrix = Seq.map (fun c -> Seq.take (Array2D.length1 r) c) entries |> array2D
+    let vector = Seq.map (fun c -> Seq.nth (Array2D.length1 r) c) entries 
+    (matrix, vector)
 
+[<Struct>]
 type Matrix(p: NumericField[,]) =
     member m.v = p
 

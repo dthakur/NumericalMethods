@@ -1,12 +1,32 @@
 ﻿module Linear
 
+open System;
 open NUnit.Framework;
 open FsUnit;
 open Complex;
 open Vector;
 open Matrix;
 
-let gaussJordan a b = b
+let gaussJordan (a:_[,]) b =
+    let reducedRowEchelon a b =
+        let r = augment a b
+        let pivot x i =
+            // printfn "%A %A" x i
+            { 0 .. Array2D.length2(x) - 1 } |> Seq.iter (fun j -> x.[i, j] <- x.[i, j] / x.[i, i]) 
+            seq { for j in 0 .. Array2D.length1(x) - 1 do if i <> j then yield j } 
+            |> Seq.iter (fun j ->
+                // printfn "%A %A" x i
+                { 0 .. Array2D.length2(x) - 1 } |> Seq.iter (fun k ->
+                    // printfn "%A %A" x i
+                    x.[j, k] <- x.[j, k] - x.[j, k] * x.[i, k]))
+        { 0 .. Array2D.length1(r) - 1 } |> Seq.iter (fun i -> pivot r i)
+        unaugment r
+    let (ap, bp) = reducedRowEchelon a b
+    { 0 .. Array2D.length1(ap) - 1 }
+        |> Seq.map (fun i -> ap.[i,i])
+        |> Seq.zip bp
+        |> Seq.map (fun (j, k) -> j / k)
+
 let luCrout a b = b
 let gaussJacobi a b = b
 let gaussSeidel a b = b
@@ -29,7 +49,7 @@ type LinearTests ()=
     let b4 = Vector([2; 1; 3] |> ianf)
     let r4 = Vector([0.310390073145789; -0.172293138277897; 0.758549050852501] |> fanf)
 
-    [<Test>] member x.gaussJordan ()= gaussJordan m1 b1 |> should equal r1
+    [<Test>] member x.gaussJordan ()= gaussJordan m1.v b1.v |> should equal r1
     [<Test>] member x.luCrout () = luCrout m2 b2 |> should equal r2
     [<Test>] member x.luCroutInverse () = luCrout m2 b2 |> should equal r2
     [<Test>] member x.gaussJacobi () = gaussJacobi m3 b3 |> should equal r3

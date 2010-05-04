@@ -43,5 +43,8 @@ let withDecimals (y:int) x =
     let scale = Math.Pow(10., float y)
     Math.Truncate(x * scale) / scale
 
+let withTwoDecimals x =
+    withDecimals 2 x
+
 let withThreeDecimals x =
     withDecimals 3 x

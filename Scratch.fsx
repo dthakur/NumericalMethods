@@ -7,7 +7,9 @@
 #load "Search.fs"
 #load "Bits.fs"
 #load "Interpolation.fs"
+#load "Linear.fs"
 #load "Nonlinear.fs"
+#load "Random.fs"
 
 open System
 open FsUnit
@@ -18,7 +20,9 @@ open Sort
 open Search
 open Bits
 open Interpolation
+open Linear
 open Nonlinear
+open Random
 
 let r = Random();
 let a1 = array2D [ [1.; 2.; 3.]; [3.; 4.; 6.] ] |> fa2nf

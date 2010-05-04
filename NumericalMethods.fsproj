@@ -49,8 +49,11 @@
     <Compile Include="Linear.fs" />
     <Compile Include="Nonlinear.fs" />
     <Compile Include="Probability.fs" />
+    <Compile Include="Special.fs" />
     <Compile Include="Random.fs" />
     <Content Include="README.txt" />
+    <Compile Include="Differentiation.fs" />
+    <Compile Include="Integration.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

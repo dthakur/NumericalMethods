@@ -26,6 +26,7 @@ type NumericField =
 
     static member Zero = Complex(0., 0.)
     static member One = Complex(0., 0.)
+    static member (~-) (n:NumericField) = Complex(-n.re, -n.im)
     static member (+) ((l:NumericField), (r:NumericField)) = Complex(l.re+r.re, l.im+r.im)
     static member (-) ((l:NumericField), (r:NumericField)) = Complex(l.re-r.re, l.im-r.im)
     static member (*) ((l:NumericField), (r:NumericField)) =
