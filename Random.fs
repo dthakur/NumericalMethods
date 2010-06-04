@@ -76,6 +76,7 @@ let lognomalPdf x mu sigma = x
 
 let normal (r:Random) mu sigma = mu
 let normalPdf x mu sigma = x
+let normalCdf x = 0.5 * (1. + erf (x / Math.Sqrt(2.)))
 
 let pareto (r:Random) a b = a
 let paretoPdf x a b = x
@@ -92,3 +93,7 @@ let uniformContinuousPdf x a b = a
 let weibull (r:Random) a b = a
 let weibullPdf x a b = x
 
+[<TestFixture>]
+type RandomTests ()= 
+    [<Test>] member x.normalCdf1 ()= normalCdf 0.5 |> withThreeDecimals |> should equal 0.691
+    [<Test>] member x.normalCdf2 ()= normalCdf 1.1 |> withThreeDecimals |> should equal 0.864
